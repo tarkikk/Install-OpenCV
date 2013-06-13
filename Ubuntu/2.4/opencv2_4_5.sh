@@ -104,9 +104,8 @@ tar -xvf opencv-2.4.5.tar.gz
 cd opencv-2.4.5
 mkdir build
 cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_OPENNI=ON ..
-make
-sudo make install
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_TBB=ON -D TBB_INCLUDE_DIRS=/usr/include/tbb CMAKE_INSTALL_PREFIX=/usr/local -D BUILD_PYTHON_SUPPORT=ON -D WITH_GTK=ON -D BUILD_EXAMPLES=ON ..
+make -j 2 && sudo make install && sudo ldconfig
 echo "OpenCV is installed to /usr/local/lib"
 echo "Appending \"/usr/local/lib\" to /etc/ld.so.conf"
 echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf
